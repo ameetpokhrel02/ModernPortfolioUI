@@ -6,9 +6,9 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/amitpokhrel', label: 'GitHub' },
-    { icon: Instagram, href: 'https://instagram.com/amitpokhrel', label: 'Instagram' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/amitpokhrel', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/ameetpokhrel02', label: 'GitHub' },
+    { icon: Instagram, href: '', label: 'https://www.instagram.com/ameet_pokhrel/' },
+    { icon: Linkedin, href: 'https://www.instagram.com/ameet_pokhrel/', label: 'LinkedIn' },
     { icon: Mail, href: 'mailto:hello@pokhrelamit.com.np', label: 'Email' },
   ]
 
