@@ -77,9 +77,9 @@ export function Hero() {
             {/* Social Links */}
             <div className="flex gap-4 justify-center md:justify-start">
               {[
-                { Icon: Github, href: 'https://github.com/amitpokhrel', label: 'GitHub' },
-                { Icon: Instagram, href: 'https://instagram.com/amitpokhrel', label: 'Instagram' },
-                { Icon: Linkedin, href: 'https://linkedin.com/in/amitpokhrel', label: 'LinkedIn' },
+                { Icon: Github, href: 'https://github.com/ameetpokhrel02', label: 'GitHub' },
+                { Icon: Instagram, href: 'https://www.instagram.com/ameet_pokhrel/', label: 'Instagram' },
+                { Icon: Linkedin, href: 'https://www.linkedin.com/in/ameet-pokhrel-82533433b/', label: 'LinkedIn' },
               ].map(({ Icon, href, label }) => (
                 <motion.a
                   key={label}
