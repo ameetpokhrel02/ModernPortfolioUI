@@ -49,7 +49,7 @@ export function Footer() {
 
         {/* Optional: Made in Nepal */}
         <div className="text-center mt-8 text-xs text-muted-foreground">
-          Made with love from Kathmandu, Nepal
+          Made with love from Tehrathum, Nepal 🇳🇵
         </div>
       </div>
     </footer>

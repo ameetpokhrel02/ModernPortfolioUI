@@ -26,7 +26,7 @@ const outerSkills = [
   { Icon: SiTailwindcss, label: "Tailwind CSS", color: "#06B6D4" },
   { Icon: SiNodedotjs, label: "Node.js", color: "#339933" },
   { Icon: SiPython, label: "Python", color: "#3776AB" },
-  { Icon: SiGithub, label: "GitHub", color: "#181717" },
+  { Icon: SiGithub, label: "GitHub", to: "#181717" },
   { Icon: SiDocker, label: "Docker", color: "#2496ED" },
 ];
 
@@ -34,16 +34,16 @@ export default function OrbitingSkills() {
   const [time, setTime] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
+  // Smooth orbiting animation
   useEffect(() => {
     if (isHovered) return;
-
     let last = performance.now();
-    const animate = (now: number) => {
+    const tick = (now: number) => {
       setTime((prev) => prev + (now - last) / 1000);
       last = now;
-      requestAnimationFrame(animate);
+      requestAnimationFrame(tick);
     };
-    const id = requestAnimationFrame(animate);
+    const id = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(id);
   }, [isHovered]);
 
@@ -55,23 +55,29 @@ export default function OrbitingSkills() {
 
       return (
         <div
-          key={i}
+          key={skill.label}
           className="absolute top-1/2 left-1/2"
           style={{
             transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
           }}
         >
+          {/* THIS IS THE MAGIC GROUP — makes tooltip work */}
           <div className="group relative">
+            {/* Icon */}
             <div
-              className="rounded-2xl bg-white/90 dark:bg-white/10 backdrop-blur-xl border border-white/50 shadow-xl flex items-center justify-center transition-all duration-300 group-hover:scale-150 group-hover:shadow-2xl group-hover:z-50"
+              className="rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl flex items-center justify-center transition-all duration-500 hover:scale-150 hover:shadow-2xl hover:z-50 cursor-pointer"
               style={{ width: size, height: size }}
             >
-              <skill.Icon className="w-9 h-9 md:w-10 md:h-10" style={{ color: skill.color }} />
+              <skill.Icon className="w-9 h-9 md:w-10 md:h-10 drop-shadow-md" style={{ color: skill.color }} />
             </div>
-            <div className="absolute -bottom-9 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-              <div className="px-3 py-1.5 bg-gray-900/95 text-white text-xs font-medium rounded-lg shadow-xl backdrop-blur-sm border border-gray-700 whitespace-nowrap">
+
+            {/* Tooltip — appears on hover */}
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
+              <div className="px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-bold rounded-lg shadow-2xl whitespace-nowrap border border-gray-700 dark:border-gray-300">
                 {skill.label}
               </div>
+              {/* Arrow pointing down */}
+              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 w-0 h-0 border-l-6 border-l-transparent border-r-6 border-r-transparent border-t-6 border-t-gray-900 dark:border-t-white" />
             </div>
           </div>
         </div>
@@ -80,19 +86,20 @@ export default function OrbitingSkills() {
   };
 
   return (
-    <div className="relative w-full aspect-square max-w-lg mx-auto">
-    {/* THIS IS THE MAGIC HITBOX — covers everything */}
     <div
-      className="absolute inset-0 z-50"
+      className="relative w-full aspect-square max-w-lg mx-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-    />
-      {/* Background Glow */}
+    >
+      {/* Full hover area */}
+      <div className="absolute inset-0 z-40" />
+
+      {/* Background glow */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-3xl" />
 
-      {/* Orbit Rings */}
-      <div className="absolute inset-8 rounded-full border border-blue-400/20 shadow-2xl shadow-blue-500/10" />
-      <div className="absolute inset-20 rounded-full border border-purple-400/30 shadow-2xl shadow-purple-500/10" />
+      {/* Orbit rings */}
+      <div className="absolute inset-8 rounded-full border border-blue-400/20 dark:border-purple-400/20" />
+      <div className="absolute inset-20 rounded-full border border-purple-400/30 dark:border-purple-400/30" />
 
       {/* Center */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
@@ -101,10 +108,7 @@ export default function OrbitingSkills() {
         </div>
       </div>
 
-      {/* Inner Orbit (3 icons) */}
       {renderOrbit(innerSkills, 100, 0.5, 56)}
-
-      {/* Outer Orbit (7 icons) — PERFECTLY EVEN */}
       {renderOrbit(outerSkills, 180, -0.35, 60)}
     </div>
   );

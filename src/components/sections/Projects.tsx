@@ -68,7 +68,7 @@ export function Projects() {
                 {/* Tech Badges - Fixed: Now uses imported Badge */}
                 <CardContent className="pt-2 flex flex-wrap gap-2">
                   {project.tech?.map((t) => (
-                    <Badge key={t} variant="secondary" size="sm">
+                    <Badge key={t} variant="secondary" className="px-2 py-1 text-sm">
                       {t}
                     </Badge>
                   ))}

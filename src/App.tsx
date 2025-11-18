@@ -6,12 +6,14 @@ import { Awards } from './components/sections/Awards'
 import { Contact } from './components/sections/Contact'
 import { Footer } from './components/layout/Footer'
 import { Skills } from './components/sections/Skills'
+//
 
 function App() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <Hero />
+      //
       <Skills />
       <Experience />
       <Projects />
