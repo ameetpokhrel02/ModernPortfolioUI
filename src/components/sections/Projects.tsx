@@ -1,0 +1,83 @@
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'  // ← FIXED: Add this import!
+import { motion } from 'framer-motion'
+import { ExternalLink, Github } from 'lucide-react'
+import { projects } from '@/data/projects'  // Your project data
+
+export function Projects() {
+  return (
+    <section id="projects" className="py-24 px-6 bg-muted/20">
+      <div className="container max-w-6xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="text-4xl font-bold text-center mb-12"
+        >
+          Projects
+        </motion.h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, i) => (
+            <motion.div
+              key={project.title}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={{ hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Card className="overflow-hidden group cursor-pointer h-full">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" 
+                  />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <CardHeader>
+                  <CardTitle>{project.title}</CardTitle>
+                  <p className="text-muted-foreground">{project.description}</p>
+                </CardHeader>
+                <CardContent className="flex gap-2 pt-0">
+                  {project.live && (
+                    <motion.a 
+                      href={project.live} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      whileHover={{ scale: 1.05 }} 
+                      className="flex-1"
+                    >
+                      <Badge variant="outline">
+                        <ExternalLink className="h-4 w-4 mr-1" /> Live
+                      </Badge>
+                    </motion.a>
+                  )}
+                  {project.github && (
+                    <motion.a 
+                      href={project.github} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <Badge variant="secondary">
+                        <Github className="h-4 w-4 mr-1" /> Code
+                      </Badge>
+                    </motion.a>
+                  )}
+                </CardContent>
+                {/* Tech Badges - Fixed: Now uses imported Badge */}
+                <CardContent className="pt-2 flex flex-wrap gap-2">
+                  {project.tech?.map((t) => (
+                    <Badge key={t} variant="secondary" size="sm">
+                      {t}
+                    </Badge>
+                  ))}
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
