@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { motion } from 'framer-motion'
+import { titleVariants, itemVariants } from '@/lib/animations'
 import { Calendar, MapPin } from 'lucide-react'
 import { experience } from '@/data/experience'
 
@@ -8,9 +9,11 @@ export function Experience() {
     <section id="experience" className="py-24 px-6">
       <div className="container max-w-4xl mx-auto">
         <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
           className="text-4xl font-bold text-center mb-12"
+          variants={titleVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
         >
           Experience
         </motion.h2>
@@ -20,9 +23,11 @@ export function Experience() {
           {experience.map((exp, i) => (
             <motion.div
               key={exp.company}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.2 }}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ delay: i * 0.08 }}
               className="mb-8 flex md:items-center"
             >
               <div className="md:w-16 md:flex-shrink-0">

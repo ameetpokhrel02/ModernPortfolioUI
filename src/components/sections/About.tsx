@@ -1,14 +1,17 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { titleVariants } from '@/lib/animations'
 
 export function About() {
 	return (
 		<section id="about" className="py-24 px-6">
 			<div className="container max-w-3xl mx-auto">
-								<motion.h2 className="text-4xl font-bold mb-6"
-									initial={{ opacity: 0, y: 12 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.8 }}
+								<motion.h2
+									className="text-4xl font-bold mb-6"
+									variants={titleVariants}
+									initial="hidden"
+									whileInView="visible"
+									viewport={{ once: true, amount: 0.2 }}
 								>About Me</motion.h2>
 				<p className="text-lg text-muted-foreground leading-relaxed">
 					I'm Amit — a frontend-focused developer building interactive, accessible

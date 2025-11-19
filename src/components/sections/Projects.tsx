@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'  // ← FIXED: Add this import!
 import { motion } from 'framer-motion'
+import { titleVariants, itemVariants } from '@/lib/animations'
 import { ExternalLink, Github } from 'lucide-react'
 import { projects } from '@/data/projects'  // Your project data
 
@@ -9,9 +10,11 @@ export function Projects() {
     <section id="projects" className="py-24 px-6 bg-muted/20">
       <div className="container max-w-6xl mx-auto">
         <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
           className="text-4xl font-bold text-center mb-12"
+          variants={titleVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
           Projects
         </motion.h2>
@@ -19,11 +22,11 @@ export function Projects() {
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
+              variants={itemVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
-              variants={{ hidden: { opacity: 0, y: 50 }, visible: { opacity: 1, y: 0 } }}
-              transition={{ delay: i * 0.1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ delay: i * 0.08 }}
             >
               <Card className="overflow-hidden group cursor-pointer h-full">
                 <div className="relative overflow-hidden">
