@@ -91,8 +91,8 @@ export default function OrbitingSkills() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Full hover area */}
-      <div className="absolute inset-0 z-40" />
+      {/* Full hover area (pointer-events-none so icons receive hover events) */}
+      <div className="absolute inset-0 z-40 pointer-events-none" />
 
       {/* Background glow */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 blur-3xl" />

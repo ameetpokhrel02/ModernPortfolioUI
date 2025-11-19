@@ -25,5 +25,6 @@ export const experience = [
     descreption: 'Assisted in managing cloud infrastructure and deploying web applications.',
     location: 'Putalisadak, Kathmandu, Nepal'
   }
+  
   // Add more from your site (e.g., Creative Professional roles)
 ];
