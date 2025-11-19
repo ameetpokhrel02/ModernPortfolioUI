@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { motion } from 'framer-motion';
 import { Hand, Github, Instagram, Linkedin } from 'lucide-react';
 import { useTypewriter } from 'react-simple-typewriter';
-import OrbitingSkills from '@/components/sections/OrbitingSkills';
+import CoderProfileCard from './CoderProfileCard';
 
 export function Hero() {
   const [text] = useTypewriter({
@@ -34,10 +34,7 @@ export function Hero() {
       <meta name="description" content="Passionate developer from Kathmandu, Nepal. Building modern web & IoT experiences with React, TypeScript, and creative animations." />
 
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 py-24">
-        {/* Subtle Orbiting Skills Background */}
-        <div className="absolute inset-0 flex items-center justify-center scale-150 opacity-30 pointer-events-none blur-sm">
-          <OrbitingSkills />
-        </div>
+        {/* NOTE: removed rotating OrbitingSkills background in Hero per request */}
 
         <div className="container relative z-10 grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
           {/* Text Content */}
@@ -119,30 +116,34 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Your Photo - GLOWING & PREMIUM */}
+          {/* Your Photo + Code Card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
             className="flex justify-center relative group"
           >
-            {/* Gradient Glow Background */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-3xl opacity-0 group-hover:opacity-70 transition duration-1000" />
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-3xl opacity-0 group-hover:opacity-70 transition duration-1000" />
+                <Avatar className="w-64 h-64 md:w-80 md:h-80 border-8 border-background shadow-2xl ring-8 ring-blue-500/20 relative">
+                  <AvatarImage
+                    src="/mee.jpg"
+                    alt="Amit Pokhrel"
+                    className="object-cover"
+                  />
+                  <AvatarFallback className="text-6xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+                    AP
+                  </AvatarFallback>
 
-            {/* Avatar */}
-            <Avatar className="w-80 h-80 md:w-96 md:h-96 border-8 border-background shadow-2xl ring-8 ring-blue-500/20 relative">
-              <AvatarImage
-                src="/mee.jpg"
-                alt="Amit Pokhrel"
-                className="object-cover"
-              />
-              <AvatarFallback className="text-8xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 text-white">
-                AP
-              </AvatarFallback>
+                  <span className="absolute bottom-4 right-4 w-6 h-6 bg-green-400 rounded-full border-4 border-background shadow-lg animate-pulse ring-4 ring-green-400/30" />
+                </Avatar>
+              </div>
 
-              {/* Online Indicator */}
-              <span className="absolute bottom-6 right-6 w-8 h-8 bg-green-400 rounded-full border-4 border-background shadow-lg animate-pulse ring-4 ring-green-400/30" />
-            </Avatar>
+              <div className="w-full md:w-auto">
+                <CoderProfileCard />
+              </div>
+            </div>
           </motion.div>
         </div>
 
