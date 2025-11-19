@@ -75,7 +75,7 @@ export function Hero() {
             <div className="flex gap-4 justify-center md:justify-start">
               {[
                 { Icon: Github, href: 'https://github.com/ameetpokhrel02', label: 'GitHub' },
-                { Icon: Instagram, href: 'https://www.instagram.com/ameet_pokhrel/', label: 'Instagram' },
+                { Icon: Instagram, href: 'https://www.instagram.com/ameet_pokrel/', label: 'Instagram' },
                 { Icon: Linkedin, href: 'https://www.linkedin.com/in/ameet-pokhrel-82533433b/', label: 'LinkedIn' },
               ].map(({ Icon, href, label }) => (
                 <motion.a
@@ -87,7 +87,7 @@ export function Hero() {
                   whileTap={{ scale: 0.9 }}
                   className="p-3 rounded-full bg-secondary/50 backdrop-blur-sm border border-border hover:bg-secondary transition-all"
                 >
-                  <Icon className="w-6 h-6" />
+                  <Icon className="w-6 h-6 text-black dark:text-white" />
                 </motion.a>
               ))}
             </div>

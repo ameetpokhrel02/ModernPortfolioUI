@@ -41,7 +41,7 @@ export function Footer() {
                 whileTap={{ scale: 0.95 }}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                <social.icon className="h-5 w-5" />
+                <social.icon className="h-5 w-5 text-black dark:text-white" />
               </motion.a>
             ))}
           </div>
