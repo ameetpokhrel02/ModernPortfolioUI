@@ -14,7 +14,7 @@ export function Contact() {
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={{ once: false, amount: 0.15 }}
           >
             <h2 className="text-3xl font-bold mb-4">Newsletter</h2>
             <p className="text-muted-foreground mb-6">Get updates on my latest projects and IoT experiments.</p>
@@ -33,7 +33,7 @@ export function Contact() {
             variants={titleVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: false, amount: 0.25 }}
           >
             Get In Touch
           </motion.h2>

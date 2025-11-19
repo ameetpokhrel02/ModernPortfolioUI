@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { motion } from 'framer-motion'
-import { titleVariants, itemVariants } from '@/lib/animations'
+import { titleVariants, containerVariants, itemVariants } from '@/lib/animations'
 import { Calendar, MapPin } from 'lucide-react'
 import { experience } from '@/data/experience'
 
@@ -13,11 +13,17 @@ export function Experience() {
           variants={titleVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
+          viewport={{ once: false, amount: 0.25 }}
         >
           Experience
         </motion.h2>
-        <div className="relative">
+        <motion.div
+          className="relative"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.15 }}
+        >
           {/* Vertical Line */}
           <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-500 hidden md:block" />
           {experience.map((exp, i) => (
@@ -26,8 +32,8 @@ export function Experience() {
               variants={itemVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ delay: i * 0.08 }}
+              viewport={{ once: false, amount: 0.15 }}
+              transition={{ delay: i * 0.06 }}
               className="mb-8 flex md:items-center"
             >
               <div className="md:w-16 md:flex-shrink-0">
@@ -49,7 +55,7 @@ export function Experience() {
               </Card>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

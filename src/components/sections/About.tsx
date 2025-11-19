@@ -11,7 +11,7 @@ export function About() {
 									variants={titleVariants}
 									initial="hidden"
 									whileInView="visible"
-									viewport={{ once: true, amount: 0.2 }}
+									viewport={{ once: false, amount: 0.2 }}
 								>About Me</motion.h2>
 				<p className="text-lg text-muted-foreground leading-relaxed">
 					I'm Amit — a frontend-focused developer building interactive, accessible

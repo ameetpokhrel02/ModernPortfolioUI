@@ -11,7 +11,7 @@ export function Skills() {
           variants={titleVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.2 }}
         >Tech Stack</motion.h2>
         <OrbitingSkills />
         <p className="mt-8 text-muted-foreground max-w-2xl mx-auto">
