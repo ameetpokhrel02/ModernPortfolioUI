@@ -52,54 +52,15 @@ export const CoderProfileCard: React.FC = () => {
           </div>
 
           <code className="font-mono text-xs md:text-sm lg:text-sm w-full">
-            <div>
-              <span className="mr-2 text-pink-500 dark:text-pink-400">const</span>
-              <span className="mr-2 text-violet-500 dark:text-violet-400">coder</span>
-              <span className="mr-2 text-pink-500 dark:text-pink-400">=</span>
-              <span className="text-zinc-600 dark:text-gray-400">{'{'}</span>
-            </div>
-            <div className="pl-5">
-              <span className="text-zinc-800 dark:text-white">name:</span>
-              <span className="text-zinc-600 dark:text-gray-400">' </span>
-              <span className="text-green-600 dark:text-green-400">{coderData.name}</span>
-              <span className="text-zinc-600 dark:text-gray-400">',</span>
-            </div>
-            <div className="pl-5">
-              <span className="text-zinc-800 dark:text-white">role:</span>
-              <span className="text-zinc-600 dark:text-gray-400">' </span>
-              <span className="text-green-600 dark:text-green-400">{coderData.role}</span>
-              <span className="text-zinc-600 dark:text-gray-400">',</span>
-            </div>
-            <div className="pl-5">
-              <span className="text-zinc-800 dark:text-white">seniority:</span>
-              <span className="text-zinc-600 dark:text-gray-400">' </span>
-              <span className="text-green-600 dark:text-green-400">{coderData.seniority}</span>
-              <span className="text-zinc-600 dark:text-gray-400">',</span>
-            </div>
-            <div className="pl-5">
-              <span className="text-zinc-800 dark:text-white">location:</span>
-              <span className="text-zinc-600 dark:text-gray-400">' </span>
-              <span className="text-green-600 dark:text-green-400">{coderData.location}</span>
-              <span className="text-zinc-600 dark:text-gray-400">',</span>
-            </div>
-            <div className="pl-5">
-              <span className="text-zinc-800 dark:text-white">skills:</span>
-              <span className="text-zinc-600 dark:text-gray-400">[</span>
-              <div className="pl-4 flex flex-wrap">
-                {coderData.skills.map((skill, index) => (
-                  <span key={skill} className="mr-1">
-                    <span className="text-zinc-600 dark:text-gray-400">'</span>
-                    <span className="text-cyan-600 dark:text-cyan-400">{skill}</span>
-                    <span className="text-zinc-600 dark:text-gray-400">'</span>
-                    {index < coderData.skills.length - 1 && <span className="text-zinc-600 dark:text-gray-400">, </span>}
-                  </span>
-                ))}
-              </div>
-              <span className="text-zinc-600 dark:text-gray-400">],</span>
-            </div>
-            <div>
-              <span className="text-zinc-600 dark:text-gray-400">};</span>
-            </div>
+            <pre className="whitespace-pre-wrap text-sm m-0">
+{`const coder = {
+  name: '${coderData.name}',
+  role: '${coderData.role}',
+  seniority: '${coderData.seniority}',
+  location: '${coderData.location}',
+  skills: [${coderData.skills.map((s) => `'${s}'`).join(', ')}],
+};`}
+            </pre>
           </code>
         </div>
       </div>
