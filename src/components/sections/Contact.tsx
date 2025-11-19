@@ -12,13 +12,9 @@ export function Contact() {
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
             <h2 className="text-3xl font-bold mb-4">Newsletter</h2>
             <p className="text-muted-foreground mb-6">Get updates on my latest projects and IoT experiments.</p>
-            <div className="flex gap-2 items-center justify-center">
-              <Input placeholder="your@email.com" className="flex-1 border-0 shadow-none bg-transparent focus-visible:ring-0" />
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Button className="bg-black text-white dark:bg-white dark:text-black shadow-md hover:shadow-lg transition-transform" aria-label="Subscribe">
-                  <Mail className="h-4 w-4 mr-2" />Subscribe
-                </Button>
-              </motion.div>
+            <div className="flex gap-2">
+              <Input placeholder="your@email.com" className="flex-1" />
+              <Button><Mail className="h-4 w-4 mr-2" />Subscribe</Button>
             </div>
           </motion.div>
         </div>
