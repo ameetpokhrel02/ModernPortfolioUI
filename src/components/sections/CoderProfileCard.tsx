@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Button } from '@/components/ui/button'
 
 const DotIcon = () => (
   <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,11 +70,7 @@ export const CoderProfileCard: React.FC = () => {
         <span>Ln 12, Col 2</span>
       </div>
 
-      <div className="p-4 flex justify-center">
-        <Button asChild variant="secondary" size="sm">
-          <a href="#contact" className="w-full text-center">Contact Me</a>
-        </Button>
-      </div>
+      {/* Contact button removed from card per layout change; placed in Hero instead */}
     </div>
   );
 };

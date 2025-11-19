@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Hand, Github, Instagram, Linkedin } from 'lucide-react';
 import { useTypewriter } from 'react-simple-typewriter';
 import CoderProfileCard from './CoderProfileCard';
+import { Button } from '@/components/ui/button'
 
 export function Hero() {
   const [text] = useTypewriter({
@@ -114,37 +115,44 @@ export function Hero() {
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Contact CTA (white style) */}
+            <div className="mt-6 flex justify-center md:justify-start">
+              <Button asChild size="lg" className="bg-white text-black dark:bg-white/10 dark:text-white">
+                <a href="#contact">Contact Me</a>
+              </Button>
+            </div>
           </motion.div>
 
           {/* Your Photo + Code Card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-            className="flex justify-center relative group"
-          >
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-3xl opacity-0 group-hover:opacity-70 transition duration-1000" />
-                <Avatar className="w-64 h-64 md:w-80 md:h-80 border-8 border-background shadow-2xl ring-8 ring-blue-500/20 relative">
-                  <AvatarImage
-                    src="/mee.jpg"
-                    alt="Amit Pokhrel"
-                    className="object-cover"
-                  />
-                  <AvatarFallback className="text-6xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 text-white">
-                    AP
-                  </AvatarFallback>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              className="flex justify-center relative group"
+            >
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur-3xl opacity-0 group-hover:opacity-70 transition duration-1000" />
+                  <Avatar className="w-64 h-64 md:w-80 md:h-80 border-8 border-background shadow-2xl ring-8 ring-blue-500/20 relative">
+                    <AvatarImage
+                      src="/mee.jpg"
+                      alt="Amit Pokhrel"
+                      className="object-cover"
+                    />
+                    <AvatarFallback className="text-6xl font-bold bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+                      AP
+                    </AvatarFallback>
 
-                  <span className="absolute bottom-4 right-4 w-6 h-6 bg-green-400 rounded-full border-4 border-background shadow-lg animate-pulse ring-4 ring-green-400/30" />
-                </Avatar>
-              </div>
+                    <span className="absolute bottom-4 right-4 w-6 h-6 bg-green-400 rounded-full border-4 border-background shadow-lg animate-pulse ring-4 ring-green-400/30" />
+                  </Avatar>
+                </div>
 
-              <div className="w-full md:w-auto">
-                <CoderProfileCard />
+                <div className="w-full md:w-auto">
+                  <CoderProfileCard />
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
         </div>
 
         {/* Scroll Down Hint */}
