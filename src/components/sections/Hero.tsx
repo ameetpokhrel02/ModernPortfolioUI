@@ -2,6 +2,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { motion } from 'framer-motion';
+import { itemVariants } from '@/lib/animations'
 import { Hand, Github, Instagram, Linkedin } from 'lucide-react';
 import { useTypewriter } from 'react-simple-typewriter';
 import CoderProfileCard from './CoderProfileCard';
@@ -93,28 +94,22 @@ export function Hero() {
             </div>
 
             {/* Tech Pills */}
-            <motion.div
-              className="flex flex-wrap gap-3 justify-center md:justify-start"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                visible: { transition: { staggerChildren: 0.08 } },
-              }}
-            >
-              {skills.map((skill) => (
+            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+              {skills.map((skill, i) => (
                 <motion.div
                   key={skill.name}
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
+                  variants={itemVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ delay: i * 0.06 }}
                 >
                   <Badge variant="secondary" className="text-sm font-medium">
                     {skill.name}
                   </Badge>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Contact CTA (white style) */}
             <div className="mt-6 flex justify-center md:justify-start">

@@ -38,13 +38,16 @@ export default function OrbitingSkills() {
   useEffect(() => {
     if (isHovered) return;
     let last = performance.now();
+    let id: number | null = null;
     const tick = (now: number) => {
       setTime((prev) => prev + (now - last) / 1000);
       last = now;
-      requestAnimationFrame(tick);
+      id = requestAnimationFrame(tick);
     };
-    const id = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(id);
+    id = requestAnimationFrame(tick);
+    return () => {
+      if (id !== null) cancelAnimationFrame(id);
+    };
   }, [isHovered]);
 
   const renderOrbit = (skills: any[], radius: number, speed: number, size = 60) => {
@@ -65,14 +68,21 @@ export default function OrbitingSkills() {
           <div className="group relative">
             {/* Icon */}
             <div
+              role="button"
+              tabIndex={0}
+              aria-label={skill.label}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onFocus={() => setIsHovered(true)}
+              onBlur={() => setIsHovered(false)}
               className="rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl flex items-center justify-center transition-all duration-500 hover:scale-150 hover:shadow-2xl hover:z-50 cursor-pointer"
               style={{ width: size, height: size }}
             >
               <skill.Icon className="w-9 h-9 md:w-10 md:h-10 drop-shadow-md" style={{ color: skill.color }} />
             </div>
 
-            {/* Tooltip — appears on hover */}
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
+            {/* Tooltip — appears on hover or focus-within */}
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
               <div className="px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-bold rounded-lg shadow-2xl whitespace-nowrap border border-gray-700 dark:border-gray-300">
                 {skill.label}
               </div>

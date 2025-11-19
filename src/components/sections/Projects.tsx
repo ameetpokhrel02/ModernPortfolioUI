@@ -76,10 +76,18 @@ export function Projects() {
                 </CardContent>
                 {/* Tech Badges - Fixed: Now uses imported Badge */}
                 <CardContent className="pt-2 flex flex-wrap gap-2">
-                  {project.tech?.map((t) => (
-                    <Badge key={t} variant="secondary" className="px-2 py-1 text-sm">
-                      {t}
-                    </Badge>
+                  {project.tech?.map((t, j) => (
+                    <motion.span
+                      key={t}
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: false, amount: 0.15 }}
+                      transition={{ delay: i * 0.06 + j * 0.03 }}
+                    >
+                      <Badge variant="secondary" className="px-2 py-1 text-sm">
+                        {t}
+                      </Badge>
+                    </motion.span>
                   ))}
                 </CardContent>
               </Card>

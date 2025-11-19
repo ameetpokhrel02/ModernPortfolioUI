@@ -30,7 +30,7 @@ export function Footer() {
 
           {/* Right: Social Icons */}
           <div className="flex items-center gap-5">
-            {socialLinks.map((social) => (
+            {socialLinks.map((social, i) => (
               <motion.a
                 key={social.label}
                 href={social.href}
@@ -39,6 +39,10 @@ export function Footer() {
                 aria-label={social.label}
                 whileHover={{ y: -4, scale: 1.15 }}
                 whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ delay: i * 0.06 }}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <social.icon className="h-5 w-5 text-black dark:text-white" />
