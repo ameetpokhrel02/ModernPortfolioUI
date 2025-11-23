@@ -1,4 +1,4 @@
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
 
@@ -35,6 +35,7 @@ export function Navbar() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-80">
+            <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <div className="mt-10 flex flex-col gap-8">
               {navItems.map((item) => (
                 <a

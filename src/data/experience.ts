@@ -1,5 +1,3 @@
-import { Description } from "@radix-ui/react-dialog";
-
 export const experience = [
   {
     company: 'Your Company/Freelance',
@@ -22,7 +20,7 @@ export const experience = [
     company: 'Max International',
     role: 'Junior Cloud Engineer',
     period: '2025 - current',
-    descreption: 'Assisted in managing cloud infrastructure and deploying web applications.',
+    description: 'Assisted in managing cloud infrastructure and deploying web applications.',
     location: 'Putalisadak, Kathmandu, Nepal'
   }
   
