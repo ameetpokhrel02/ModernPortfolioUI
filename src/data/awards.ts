@@ -4,7 +4,7 @@ export const awards = [
   { title: 'Creative Coder Recognition', year: 2022, description: 'Global Code Awards' },
   { title: 'AWS Certification of Cloud Practitioner', year: 2025, description: 'Amazon Web Services' },
   { title: 'Ubuntu Community Contributor Award', year: 2023, description: 'Ubuntu Community' },
-
+  { title: 'Nasa Spaces AI Hackathon BNL Winner', year: 2021, description: 'NASA' },
   // Add any from your site or make up placeholders
   
 ];

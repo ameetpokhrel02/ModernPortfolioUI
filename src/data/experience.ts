@@ -22,7 +22,15 @@ export const experience = [
     period: '2025 - current',
     description: 'Assisted in managing cloud infrastructure and deploying web applications.',
     location: 'Putalisadak, Kathmandu, Nepal'
-  }
+  },
+
+  {
+    company: 'KIEC PVT.LTD',
+    role: 'IT Support | Graphics Designer & Social Media Marketing ',
+    period: '2023 - 2024',
+    description: 'Provided IT support, designed graphics, and managed social media marketing campaigns.',
+    location: 'Dillibazar, Kathmandu, Nepal',
+  },
   
   // Add more from your site (e.g., Creative Professional roles)
 ];
