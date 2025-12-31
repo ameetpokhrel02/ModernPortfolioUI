@@ -2,7 +2,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/s
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
 
-const navItems = ['About', 'Skills', 'Experience', 'Projects', 'Awards', 'Contact']  // Added Skills
+const navItems = ['About', 'Skills', 'Education', 'Experience', 'Projects', 'Awards', 'Contact']
 // Rest unchanged (href={`#${item.toLowerCase()}`})  // Matches sections
 // Rest same as before
 

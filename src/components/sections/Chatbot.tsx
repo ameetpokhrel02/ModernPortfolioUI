@@ -93,7 +93,7 @@ export default function Chatbot() {
     setInputMessage('');
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
@@ -112,43 +112,45 @@ export default function Chatbot() {
   };
 
   return (
-    <>
+    <div className="fixed bottom-6 right-6 z-50 transition-all duration-500 ease-out">
       {/* Chat Button */}
       {!isOpen && (
-        <button
-          onClick={toggleChat}
-          className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 z-50"
-          aria-label="Open chat"
-        >
-          <MessageCircle size={24} />
-        </button>
+        <div className="animate-bounce-in">
+          <button
+            onClick={toggleChat}
+            className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 animate-pulse hover:animate-none"
+            aria-label="Open chat"
+          >
+            <MessageCircle size={24} />
+          </button>
+        </div>
       )}
 
       {/* Chat Window */}
       {isOpen && (
-        <div className={`fixed bottom-6 right-6 bg-white rounded-lg shadow-2xl border z-50 transition-all duration-300 ${
+        <div className={`bg-white rounded-lg shadow-2xl border transition-all duration-300 transform ${
           isMinimized ? 'w-80 h-16' : 'w-80 h-96'
-        }`}>
+        } ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
           {/* Header */}
           <div className="bg-blue-600 text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <MessageCircle size={20} />
               <span className="font-medium">Chat with Amit's AI</span>
               {!isConnected && (
-                <span className="text-xs bg-red-500 px-2 py-1 rounded">Offline</span>
+                <span className="text-xs bg-red-500 px-2 py-1 rounded animate-pulse">Offline</span>
               )}
             </div>
             <div className="flex space-x-2">
               <button
                 onClick={toggleMinimize}
-                className="hover:bg-blue-700 p-1 rounded"
+                className="hover:bg-blue-700 p-1 rounded transition-colors duration-200"
                 aria-label={isMinimized ? "Maximize" : "Minimize"}
               >
                 <Minimize2 size={16} />
               </button>
               <button
                 onClick={toggleChat}
-                className="hover:bg-blue-700 p-1 rounded"
+                className="hover:bg-blue-700 p-1 rounded transition-colors duration-200"
                 aria-label="Close chat"
               >
                 <X size={16} />
@@ -158,19 +160,20 @@ export default function Chatbot() {
 
           {/* Chat Content */}
           {!isMinimized && (
-            <>
+            <div className="animate-in slide-in-from-bottom-2 duration-300">
               {/* Messages */}
               <div className="h-64 overflow-y-auto p-4 space-y-3">
-                {messages.map((message) => (
+                {messages.map((message, index) => (
                   <div
                     key={message.id}
-                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-in slide-in-from-${message.type === 'user' ? 'right' : 'left'}-2 duration-300`}
+                    style={{ animationDelay: `${index * 50}ms` }}
                   >
                     <div
-                      className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
+                      className={`max-w-xs px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:shadow-md ${
                         message.type === 'user'
                           ? 'bg-blue-600 text-white'
-                          : 'bg-gray-100 text-gray-800'
+                          : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
                       }`}
                     >
                       <div className="whitespace-pre-wrap">{message.message}</div>
@@ -179,7 +182,7 @@ export default function Chatbot() {
                 ))}
                 
                 {isTyping && (
-                  <div className="flex justify-start">
+                  <div className="flex justify-start animate-in slide-in-from-left-2 duration-300">
                     <div className="bg-gray-100 text-gray-800 px-3 py-2 rounded-lg text-sm">
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
@@ -194,31 +197,31 @@ export default function Chatbot() {
               </div>
 
               {/* Input */}
-              <div className="p-4 border-t">
+              <div className="p-4 border-t bg-gray-50 rounded-b-lg">
                 <div className="flex space-x-2">
                   <input
                     type="text"
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
-                    onKeyPress={handleKeyPress}
+                    onKeyDown={handleKeyDown}
                     placeholder="Ask about Amit's skills, projects..."
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm transition-all duration-200"
                     disabled={!isConnected}
                   />
                   <button
                     onClick={sendMessage}
                     disabled={!inputMessage.trim() || !isConnected}
-                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white p-2 rounded-lg transition-colors"
+                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 text-white p-2 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:hover:scale-100"
                     aria-label="Send message"
                   >
                     <Send size={16} />
                   </button>
                 </div>
               </div>
-            </>
+            </div>
           )}
         </div>
       )}
-    </>
+    </div>
   );
 }

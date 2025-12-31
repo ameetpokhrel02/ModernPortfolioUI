@@ -72,15 +72,19 @@ Feel free to use the contact form below to get in touch!"""
         return "Amit is based in Kathmandu, Nepal 🇳🇵 and available for both local and remote opportunities!"
     
     # Education related
-    elif any(word in message for word in ['education', 'study', 'degree', 'university', 'college']):
-        return """Amit's educational background focuses on:
+    elif any(word in message for word in ['education', 'study', 'degree', 'university', 'college', 'bachelor', 'plus two']):
+        return """Amit's educational background:
 
-🎓 **Computer Science & Engineering**
-💻 **Self-taught** in modern web technologies
-🔧 **IoT & Hardware** development
-📚 **Continuous Learning** in cloud technologies and frameworks
+🎓 **Bachelor's Degree** - Computer Science & Engineering
+   London Metropolitan University (UK Affiliated)
+   Itahari International College, Nepal (2021-2025)
+   
+📚 **Plus Two (+2)** - Science
+   Kathmandu Model College (KMC), Kathmandu (2019-2021)
 
-Always expanding knowledge through hands-on projects!"""
+🌟 **Key Areas**: Software Engineering, Data Structures, Web Technologies, Database Management, and Project Management
+
+Always expanding knowledge through hands-on projects and continuous learning!"""
     
     # IoT related
     elif any(word in message for word in ['iot', 'internet of things', 'sensors', 'hardware', 'arduino', 'raspberry']):

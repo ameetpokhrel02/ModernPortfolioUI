@@ -15,7 +15,7 @@ export function Skills() {
         >Tech Stack</motion.h2>
         <OrbitingSkills />
         <p className="mt-8 text-muted-foreground max-w-2xl mx-auto">
-          Proficient in modern frontend tools, IoT integrations, and creative animations.
+          Full-stack developer with expertise in modern web technologies, cloud infrastructure (AWS), and AI/ML frameworks. Specialized in IoT integrations and scalable solutions.
         </p>
       </div>
     </section>

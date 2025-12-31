@@ -11,6 +11,34 @@
   animation: wave 2.5s ease-in-out infinite;
   transform-origin: 70% 70%;
 }
+
+@keyframes bounce-in {
+  0% { 
+    transform: scale(0.3) rotate(-10deg);
+    opacity: 0;
+  }
+  50% { 
+    transform: scale(1.05) rotate(5deg);
+  }
+  70% { 
+    transform: scale(0.9) rotate(-2deg);
+  }
+  100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
