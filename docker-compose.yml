@@ -1,8 +1,16 @@
 services:
-  backend:
+  redis:
+    image: redis:7-alpine
+    container_name: portfolio-redis
+    ports:
+      - "6380:6379"  # Different port to avoid conflicts
+    restart: unless-stopped
+
+  portfolio-backend:
     build: 
       context: ./backend
       dockerfile: Dockerfile
+    container_name: portfolio-backend
     ports:
       - "8001:8000"
     volumes:
@@ -11,13 +19,15 @@ services:
     environment:
       - DEBUG=1
       - DJANGO_SETTINGS_MODULE=backend.settings
+    depends_on:
+      - redis
     restart: unless-stopped
-    container_name: portfolio-backend
 
-  frontend:
+  portfolio-frontend:
     build:
       context: .
       dockerfile: Dockerfile.frontend
+    container_name: portfolio-frontend
     ports:
       - "5174:5173"
     volumes:
@@ -26,9 +36,8 @@ services:
     environment:
       - VITE_API_BASE_URL=http://localhost:8001/api
     depends_on:
-      - backend
+      - portfolio-backend
     restart: unless-stopped
-    container_name: portfolio-frontend
 
 volumes:
   backend_data:

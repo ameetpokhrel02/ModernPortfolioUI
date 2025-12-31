@@ -35,5 +35,5 @@ RUN echo "from django.contrib.auth.models import User; User.objects.create_super
 # Expose port
 EXPOSE 8000
 
-# Run the application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Run the application with Daphne for WebSocket support
+CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "backend.asgi:application"]

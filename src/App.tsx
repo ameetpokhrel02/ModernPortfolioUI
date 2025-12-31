@@ -7,7 +7,7 @@ import { Awards } from './components/sections/Awards'
 import { Contact } from './components/sections/Contact'
 import { Footer } from './components/layout/Footer'
 import { Skills } from './components/sections/Skills'
-//
+import Chatbot from './components/sections/Chatbot'
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
       <Awards />
       <Contact />
       <Footer />
+      <Chatbot />
     </div>
   )
 }
