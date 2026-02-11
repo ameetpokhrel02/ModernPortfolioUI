@@ -1,12 +1,12 @@
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-import { Menu, Terminal } from 'lucide-react'
+import { Menu, Terminal, Shield } from 'lucide-react'
 import { useSystem } from '@/contexts/SystemContext'
 
 const navItems = ['About', 'Skills', 'Education', 'Experience', 'Projects', 'Awards', 'Contact']
 
 export function Navbar() {
-  const { isSystemMode, toggleSystemMode } = useSystem();
+  const { isSystemMode, toggleSystemMode, isSecuritySandboxActive, toggleSecuritySandbox } = useSystem();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -39,7 +39,22 @@ export function Navbar() {
             }`}
           >
             <Terminal className="w-4 h-4 mr-2" />
-            {isSystemMode ? 'EXIT SYSTEM' : 'ENTER SYSTEM'}
+            {isSystemMode ? 'EXIT PLAYGROUND' : 'PLAYGROUND'}
+          </Button>
+
+          {/* Security Sandbox Toggle */}
+          <Button
+            onClick={toggleSecuritySandbox}
+            variant={isSecuritySandboxActive ? "default" : "outline"}
+            size="sm"
+            className={`font-mono text-xs ${
+              isSecuritySandboxActive 
+                ? 'bg-red-600 hover:bg-red-700 text-white' 
+                : 'border-red-500/50 text-red-600 hover:bg-red-50 hover:text-red-700'
+            }`}
+          >
+            <Shield className="w-4 h-4 mr-2" />
+            {isSecuritySandboxActive ? 'EXIT SECURITY' : 'SECURITY SANDBOX'}
           </Button>
         </nav>
 
@@ -57,6 +72,20 @@ export function Navbar() {
             }`}
           >
             <Terminal className="w-4 h-4" />
+          </Button>
+
+          {/* Mobile Security Toggle */}
+          <Button
+            onClick={toggleSecuritySandbox}
+            variant={isSecuritySandboxActive ? "default" : "outline"}
+            size="sm"
+            className={`font-mono text-xs ${
+              isSecuritySandboxActive 
+                ? 'bg-red-600 hover:bg-red-700 text-white' 
+                : 'border-red-500/50 text-red-600 hover:bg-red-50 hover:text-red-700'
+            }`}
+          >
+            <Shield className="w-4 h-4" />
           </Button>
           
           <Sheet>

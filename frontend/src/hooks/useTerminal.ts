@@ -247,7 +247,7 @@ export function useTerminal() {
                 value: `❌ Error executing command: ${error instanceof Error ? error.message : 'Unknown error'}`
             });
         }
-    }, [state.isAiMode, addToHistory, clearHistory, toggleSystemMode, connectAI, disconnectAI, animateOutput]);
+    }, [state.isAiMode, addToHistory, clearHistory, toggleSystemMode, connectAI, disconnectAI, animateOutput, playAnimatedCommand]);
 
     const navigateHistory = useCallback((direction: 'up' | 'down') => {
         if (commandHistory.length === 0) return;

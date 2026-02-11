@@ -4,12 +4,16 @@ interface SystemContextType {
   isSystemMode: boolean;
   setSystemMode: (mode: boolean) => void;
   toggleSystemMode: () => void;
+  isSecuritySandboxActive: boolean;
+  setSecuritySandboxActive: (active: boolean) => void;
+  toggleSecuritySandbox: () => void;
 }
 
 const SystemContext = createContext<SystemContextType | undefined>(undefined);
 
 export function SystemProvider({ children }: { children: ReactNode }) {
   const [isSystemMode, setIsSystemMode] = useState(false);
+  const [isSecuritySandboxActive, setIsSecuritySandboxActive] = useState(false);
 
   const toggleSystemMode = () => {
     setIsSystemMode(prev => !prev);
@@ -22,11 +26,18 @@ export function SystemProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const toggleSecuritySandbox = () => {
+    setIsSecuritySandboxActive(prev => !prev);
+  };
+
   return (
     <SystemContext.Provider value={{
       isSystemMode,
       setSystemMode: setIsSystemMode,
-      toggleSystemMode
+      toggleSystemMode,
+      isSecuritySandboxActive,
+      setSecuritySandboxActive: setIsSecuritySandboxActive,
+      toggleSecuritySandbox
     }}>
       {children}
     </SystemContext.Provider>

@@ -1,0 +1,186 @@
+/* Cyberpunk OS Playground Styles */
+
+/* Radial gradient utility for grid pulse effect */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Custom scrollbar for playground terminal */
+.playground-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.playground-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.playground-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #06b6d4, #0891b2);
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.3);
+}
+
+.playground-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #22d3ee, #0891b2);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
+}
+
+/* Window drag cursor */
+.window-draggable {
+  cursor: grab;
+}
+
+.window-draggable:active {
+  cursor: grabbing;
+}
+
+/* Terminal text selection */
+.terminal-content {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+.terminal-content::selection {
+  background: rgba(6, 182, 212, 0.3);
+  color: inherit;
+}
+
+/* Cyberpunk glow effect for window */
+.cyberpunk-window-glow {
+  box-shadow: 
+    0 0 20px rgba(6, 182, 212, 0.1),
+    0 0 40px rgba(6, 182, 212, 0.05),
+    inset 0 0 20px rgba(6, 182, 212, 0.05);
+}
+
+/* Grid animation keyframes */
+@keyframes grid-pulse {
+  0% { 
+    opacity: 0.1;
+    filter: drop-shadow(0 0 0px rgba(6, 182, 212, 0));
+  }
+  50% { 
+    opacity: 0.4;
+    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8));
+  }
+  100% { 
+    opacity: 0.1;
+    filter: drop-shadow(0 0 0px rgba(6, 182, 212, 0));
+  }
+}
+
+.grid-pulse-active {
+  animation: grid-pulse 0.4s ease-out;
+}
+
+/* Terminal boot sequence */
+@keyframes boot-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.boot-flicker {
+  animation: boot-flicker 0.1s infinite;
+}
+
+/* AI mode indicator pulse */
+@keyframes ai-pulse {
+  0%, 100% { 
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.ai-pulse {
+  animation: ai-pulse 2s ease-in-out infinite;
+}
+
+/* Window control buttons hover effects */
+.window-control {
+  transition: all 0.2s ease;
+}
+
+.window-control:hover {
+  filter: brightness(1.2) drop-shadow(0 0 5px currentColor);
+}
+
+/* Typewriter cursor */
+@keyframes typewriter-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.typewriter-cursor {
+  animation: typewriter-cursor 0.8s infinite;
+}
+
+/* Terminal scan lines */
+.scan-lines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    transparent 50%,
+    rgba(6, 182, 212, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scan-lines 0.1s linear infinite;
+}
+
+@keyframes scan-lines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .playground-window {
+    margin: 10px;
+  }
+  
+  .playground-window.maximized {
+    margin: 5px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cyberpunk-window-glow {
+    box-shadow: 0 0 0 2px #06b6d4;
+  }
+  
+  .playground-scroll::-webkit-scrollbar-thumb {
+    background: #06b6d4;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .grid-pulse-active,
+  .boot-flicker,
+  .ai-pulse,
+  .typewriter-cursor,
+  .scan-lines::before {
+    animation: none;
+  }
+  
+  .cyberpunk-window-glow {
+    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.3);
+  }
+}

@@ -12,6 +12,7 @@ import Chatbot from './components/sections/Chatbot'
 import { SystemProvider } from './contexts/SystemContext'
 import { SystemOverlay } from './components/system/SystemOverlay'
 import { ResponsiveLayout } from './components/layout/ResponsiveLayout'
+import { SecuritySandboxOverlay } from './components/system/SecuritySandboxOverlay'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Footer />
           <Chatbot />
           <SystemOverlay />
+          <SecuritySandboxOverlay />
         </div>
       </ResponsiveLayout>
     </SystemProvider>
