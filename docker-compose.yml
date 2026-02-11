@@ -29,10 +29,7 @@ services:
       dockerfile: Dockerfile.frontend
     container_name: portfolio-frontend
     ports:
-      - "5174:5173"
-    volumes:
-      - .:/app
-      - /app/node_modules
+      - "3000:80"  # Nginx serves on port 80
     environment:
       - VITE_API_BASE_URL=http://localhost:8001/api
     depends_on:

@@ -85,31 +85,31 @@ export default function OrbitingSkills() {
               onFocus={() => setIsHovered(true)}
               onBlur={() => setIsHovered(false)}
               className="rounded-2xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl flex items-center justify-center transition-all duration-500 hover:scale-150 hover:shadow-2xl hover:z-50 cursor-pointer relative overflow-hidden"
-              style={{ 
-                width: size, 
+              style={{
+                width: size,
                 height: size,
                 boxShadow: glowColor ? `0 0 20px ${glowColor}20, 0 0 40px ${glowColor}10` : undefined
               }}
             >
               {/* Animated background glow */}
-              <div 
+              <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-2xl"
-                style={{ 
+                style={{
                   background: `radial-gradient(circle, ${skill.color}40 0%, transparent 70%)`
                 }}
               />
-              
+
               {/* Pulsing ring animation for AI/AWS skills */}
               {(skill.label.includes('AI') || skill.label.includes('AWS') || skill.label.includes('TensorFlow') || skill.label.includes('PyTorch') || skill.label.includes('OpenAI')) && (
-                <div 
+                <div
                   className="absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100 animate-ping"
                   style={{ borderColor: skill.color }}
                 />
               )}
-              
-              <skill.Icon 
-                className="w-9 h-9 md:w-10 md:h-10 drop-shadow-md transition-all duration-300 group-hover:scale-110 relative z-10" 
-                style={{ color: skill.color }} 
+
+              <skill.Icon
+                className="w-9 h-9 md:w-10 md:h-10 drop-shadow-md transition-all duration-300 group-hover:scale-110 relative z-10"
+                style={{ color: skill.color }}
               />
             </div>
 

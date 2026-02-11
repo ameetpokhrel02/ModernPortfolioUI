@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./styles/mobile.css";
 
 @custom-variant dark (&:is(.dark *));
 @keyframes wave {
@@ -38,6 +39,74 @@
 }
 .animate-spin-slow {
   animation: spin-slow 8s linear infinite;
+}
+
+/* Cyberpunk Terminal Effects */
+@keyframes cyberpunk-glow {
+  0%, 100% { 
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+  50% { 
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+@keyframes data-stream {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes terminal-flicker {
+  0%, 100% { opacity: 1; }
+  98% { opacity: 1; }
+  99% { opacity: 0.98; }
+  99.5% { opacity: 1; }
+}
+
+.cyberpunk-text {
+  animation: cyberpunk-glow 3s ease-in-out infinite;
+}
+
+.terminal-flicker {
+  animation: terminal-flicker 0.15s infinite linear;
+}
+
+.data-stream {
+  animation: data-stream 3s linear infinite;
+}
+
+/* Custom Scrollbar for Terminal */
+.terminal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00bcd4, #0891b2);
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+.terminal-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #22d3ee, #0891b2);
+  box-shadow: 0 0 15px rgba(0, 188, 212, 0.8);
+}
+
+/* AI Mode Scrollbar */
+.ai-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ff41, #22c55e);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.ai-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4ade80, #22c55e);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.8);
 }
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

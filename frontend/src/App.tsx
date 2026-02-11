@@ -9,22 +9,30 @@ import { Contact } from './components/sections/Contact'
 import { Footer } from './components/layout/Footer'
 import { Skills } from './components/sections/Skills'
 import Chatbot from './components/sections/Chatbot'
+import { SystemProvider } from './contexts/SystemContext'
+import { SystemOverlay } from './components/system/SystemOverlay'
+import { ResponsiveLayout } from './components/layout/ResponsiveLayout'
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Education />
-      <Experience />
-      <Projects />
-      <Awards />
-      <Contact />
-      <Footer />
-      <Chatbot />
-    </div>
+    <SystemProvider>
+      <ResponsiveLayout>
+        <div className="min-h-screen bg-background text-foreground">
+          <Navbar />
+          <Hero />
+          <About />
+          <Skills />
+          <Education />
+          <Experience />
+          <Projects />
+          <Awards />
+          <Contact />
+          <Footer />
+          <Chatbot />
+          <SystemOverlay />
+        </div>
+      </ResponsiveLayout>
+    </SystemProvider>
   )
 }
 

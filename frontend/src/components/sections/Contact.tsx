@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { titleVariants, itemVariants } from '@/lib/animations'
 import { Send, Mail, Loader2 } from 'lucide-react'
 import { useState } from 'react'
-import { contactAPI, newsletterAPI, type ContactFormData, type NewsletterFormData } from '@/lib/api'
+import { contactAPI, newsletterAPI, type ContactFormData } from '@/lib/api'
 
 export function Contact() {
   // Newsletter state
