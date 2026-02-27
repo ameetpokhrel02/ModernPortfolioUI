@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import type { CyberpunkTerminalState, TerminalEntry, CommandResult } from '../types';
-import { findCyberpunkCommand, getCyberpunkCommandSuggestions, bootSequence, syncSystemState, getSystemState } from '../terminal/commands';
+import { findCyberpunkCommand, getCyberpunkCommandSuggestions, bootSequence, getSystemState } from '../terminal/commands';
 import { usePlayground } from '../context/PlaygroundContext';
 
 const MAX_HISTORY = 200;
@@ -284,7 +284,8 @@ export function useTerminalEngine() {
             content: '🚪 Closing Interactive Security Sandbox...',
           });
           setTimeout(() => {
-            closePlayground();
+            // Dispatch the closeSecuritySandbox event instead of closePlayground
+            window.dispatchEvent(new CustomEvent('closeSecuritySandbox'));
           }, 1000);
           break;
       }

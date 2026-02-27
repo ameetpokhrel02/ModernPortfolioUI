@@ -1,5 +1,5 @@
 import type { CyberpunkCommand, AnimationFrame } from '../types';
-import { fileSystemCommands, fileSystemCommandNames } from './fileSystemCommands';
+import { fileSystemCommands } from './fileSystemCommands';
 import { getFileSystemState } from './virtualFileSystem';
 
 // Security-focused system state - this will be synced with terminal state
@@ -8,7 +8,7 @@ let systemState = {
   isFirewallActive: false,
   isMonitoringActive: false,
   lastIntrusionCheck: Date.now(),
-  intrusionTimer: null as NodeJS.Timeout | null,
+  intrusionTimer: null as number | null,
 };
 
 // State sync function to be called from terminal engine
@@ -37,7 +37,7 @@ const startIntrusionDetection = (addEntry: (entry: any) => void) => {
     // Random intrusion attempt every 30-60 seconds
     const nextCheck = Math.random() * 30000 + 30000;
     
-    systemState.intrusionTimer = setTimeout(() => {
+    systemState.intrusionTimer = window.setTimeout(() => {
       if (Math.random() < 0.3) { // 30% chance
         const suspiciousIPs = [
           '203.0.113.45', '198.51.100.23', '192.0.2.156',
@@ -57,12 +57,7 @@ const startIntrusionDetection = (addEntry: (entry: any) => void) => {
   checkIntrusion();
 };
 
-const stopIntrusionDetection = () => {
-  if (systemState.intrusionTimer) {
-    clearTimeout(systemState.intrusionTimer);
-    systemState.intrusionTimer = null;
-  }
-};
+
 
 // ASCII Art Animations
 const architectureFrames: AnimationFrame[] = [
@@ -327,7 +322,7 @@ export const cyberpunkCommands: Record<string, CyberpunkCommand> = {
   'enable firewall': {
     name: 'enable firewall',
     description: 'Activate security firewall (Admin only)',
-    execute: (args, addEntry) => {
+    execute: (_args, addEntry) => {
       if (systemState.accessLevel !== 'Administrator') {
         return {
           type: 'error',
@@ -602,7 +597,11 @@ export const cyberpunkCommands: Record<string, CyberpunkCommand> = {
   exit: {
     name: 'exit',
     description: 'Close playground',
-    execute: () => ({ type: 'exit' })
+    execute: () => {
+      // For Security Sandbox, we need to close it via the system context
+      window.dispatchEvent(new CustomEvent('closeSecuritySandbox'));
+      return { type: 'exit' };
+    }
   },
 
   'connect ai': {

@@ -24,7 +24,7 @@ export const fileSystemCommands: Record<string, CyberpunkCommand> = {
     aliases: ['dir'],
     execute: (args) => {
       const currentDir = getCurrentDirectory();
-      const showAll = args.includes('-a') || args.includes('--all');
+
       const longFormat = args.includes('-l') || args.includes('--long');
       
       if (!currentDir.children) {
@@ -174,9 +174,8 @@ export const fileSystemCommands: Record<string, CyberpunkCommand> = {
   tree: {
     name: 'tree',
     description: 'Display directory tree structure',
-    execute: (args) => {
-      const showAll = args.includes('-a');
-      const maxDepth = args.includes('-L') ? parseInt(args[args.indexOf('-L') + 1]) || 3 : undefined;
+    execute: () => {
+
       
       const treeOutput = generateTreeView();
       
@@ -296,7 +295,7 @@ export const fileSystemCommands: Record<string, CyberpunkCommand> = {
 
         if (node.children) {
           Object.values(node.children).forEach((child: any) => {
-            const childPath = currentPath === '/' ? `/${child.name}` : `${currentPath}/${child.name}`;
+
             searchNode(child, currentPath);
           });
         }

@@ -289,15 +289,24 @@ export function SecuritySandboxOverlay() {
     const [messagePulse, setMessagePulse] = useState(0);
     const device = useDeviceDetection();
 
-    // Listen for message pulses
+    // Listen for message pulses and close events
     useEffect(() => {
         const handleMessagePulse = () => {
             setMessagePulse(prev => prev + 1);
         };
 
+        const handleCloseSecuritySandbox = () => {
+            setSecuritySandboxActive(false);
+        };
+
         window.addEventListener('messagePulse' as any, handleMessagePulse);
-        return () => window.removeEventListener('messagePulse' as any, handleMessagePulse);
-    }, []);
+        window.addEventListener('closeSecuritySandbox', handleCloseSecuritySandbox);
+
+        return () => {
+            window.removeEventListener('messagePulse' as any, handleMessagePulse);
+            window.removeEventListener('closeSecuritySandbox', handleCloseSecuritySandbox);
+        };
+    }, [setSecuritySandboxActive]);
 
     return (
         <AnimatePresence>

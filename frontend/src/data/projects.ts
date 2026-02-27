@@ -33,5 +33,7 @@ export const projects = [
     github: 'https://github.com/ameetpokhrel02/mental-health-app',
     tech: ['Flutter', 'Firebase', 'node.js']
   }
+
+   
   // Add more (aim for 3-6 total)
 ];
