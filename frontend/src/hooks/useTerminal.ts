@@ -1,10 +1,10 @@
 import { useState, useCallback, useRef } from 'react';
 import type { HistoryEntry, TerminalState, CommandAction } from '@/lib/terminal/types';
 import { findCommand, getCommandSuggestions } from '@/lib/terminal/commands';
-import { useSystem } from '@/contexts/SystemContext';
+import { useSystem, type TerminalTheme } from '@/contexts/SystemContext';
 
 export function useTerminal() {
-    const { toggleSystemMode } = useSystem();
+    const { toggleSystemMode, setTerminalTheme } = useSystem();
     const [state, setState] = useState<TerminalState>({
         history: [],
         currentInput: '',
@@ -231,6 +231,14 @@ export function useTerminal() {
 
                 case 'DISCONNECT_AI':
                     disconnectAI();
+                    break;
+
+                case 'SET_COLOR':
+                    setTerminalTheme(action.payload as TerminalTheme);
+                    addToHistory({
+                        type: 'system',
+                        value: `🎨 Terminal color changed to: ${action.payload.toUpperCase()}`
+                    });
                     break;
 
                 case 'ANIMATE':

@@ -18,6 +18,7 @@ export type CommandAction =
   | { type: 'EXIT' }
   | { type: 'CONNECT_AI' }
   | { type: 'DISCONNECT_AI' }
+  | { type: 'SET_COLOR'; payload: string }
   | { type: 'ANIMATE'; payload: { lines: string[]; delay?: number } }
   | { type: 'ANIMATE_FRAMES'; payload: { frames: Array<{content: string, delay?: number, color?: string}> } };
 

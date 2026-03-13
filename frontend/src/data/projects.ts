@@ -32,7 +32,26 @@ export const projects = [
     live: 'https://mentalhealth.pokhrelamit.com.np',
     github: 'https://github.com/ameetpokhrel02/mental-health-app',
     tech: ['Flutter', 'Firebase', 'node.js']
-  }
+  },
+
+  {
+    title: 'Suraksha-OS',
+    description: 'Suraksha OS is an interactive citizen safety system designed to raise awareness about cybersecurity, digital rights, and safe digital practices in Nepal.',
+    image: '/images/suraksha-os.png',
+    live: 'https://suraksha-os.vercel.app',
+    github: 'https://github.com/amitpokhrel/suraksha-os',
+    tech: ['C', 'Linux', 'Embedded Systems'],
+    
+  },
+
+  {
+    title: 'LoadSense',
+    description: 'Smart academic workload management app that helps students visualize deadlines, detect overload early, and prevent academic burnout with intuitive heatmaps.',
+    image: 'https://loadsense.vercel.app/assets/STUDENT1-Photoroom-ya7TXNuW.png',
+    live: 'https://loadsense.vercel.app/',
+    github: 'https://github.com/amitpokhrel/loadsense',
+    tech: ['React', 'Next.js', 'Tailwind CSS'],
+  },
 
    
   // Add more (aim for 3-6 total)

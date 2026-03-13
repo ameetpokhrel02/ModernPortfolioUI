@@ -1,7 +1,72 @@
 import type { Command } from './types';
 import { architectureAnimation, deploymentAnimation } from './animations';
 
+// Color shortcuts mapping
+const colorShortcuts: Record<string, string> = {
+  'a': 'red',
+  'b': 'green', 
+  'c': 'blue',
+  'd': 'purple',
+  'e': 'orange',
+  'f': 'pink',
+  'g': 'yellow',
+  'h': 'cyan',
+};
+
+const validColors = ['cyan', 'red', 'green', 'purple', 'orange', 'pink', 'yellow', 'blue'];
+
 export const commands: Record<string, Command> = {
+  color: {
+    name: 'color',
+    description: 'Change terminal color theme',
+    execute: (args: string[]) => {
+      const input = args[0]?.toLowerCase();
+      
+      if (!input) {
+        return {
+          type: 'OUTPUT',
+          payload: `┌─ TERMINAL COLOR THEMES ────────────────┐
+│                                        │
+│ 🎨 AVAILABLE COLORS                    │
+│   color red     (or: color a)          │
+│   color green   (or: color b)          │
+│   color blue    (or: color c)          │
+│   color purple  (or: color d)          │
+│   color orange  (or: color e)          │
+│   color pink    (or: color f)          │
+│   color yellow  (or: color g)          │
+│   color cyan    (or: color h)          │
+│                                        │
+│ 💡 USAGE                               │
+│   Type "color <name>" or "color <a-h>" │
+│   Example: color red  OR  color a      │
+│                                        │
+└────────────────────────────────────────┘`
+        };
+      }
+
+      // Check if it's a shortcut (a-h)
+      const colorName = colorShortcuts[input] || input;
+
+      if (!validColors.includes(colorName)) {
+        return {
+          type: 'OUTPUT',
+          payload: `❌ Invalid color: "${input}"
+          
+Valid colors: ${validColors.join(', ')}
+Or use shortcuts: a-h (a=red, b=green, c=blue, etc.)
+
+Type "color" for full list.`
+        };
+      }
+
+      return {
+        type: 'SET_COLOR',
+        payload: colorName
+      };
+    }
+  },
+
   help: {
     name: 'help',
     description: 'Display available commands',
@@ -21,6 +86,10 @@ export const commands: Record<string, Command> = {
 │   clear       - Clear terminal         │
 │   exit        - Exit system mode       │
 │                                        │
+│ 🎨 CUSTOMIZATION                       │
+│   color       - Change terminal color  │
+│   color <a-h> - Quick color change     │
+│                                        │
 │ 🤖 AI ASSISTANT                        │
 │   connect ai  - Connect to AI chat     │
 │   ai          - Quick AI connect       │
@@ -37,7 +106,7 @@ export const commands: Record<string, Command> = {
 │                                        │
 └────────────────────────────────────────┘
 
-💡 Pro tip: Type "ai" for quick AI assistant access!`
+💡 Pro tip: Type "color" to customize terminal colors!`
     })
   },
 

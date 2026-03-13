@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useTerminal } from '@/hooks/useTerminal';
 import { useTypingSound } from '@/hooks/useTypingSound';
 import { useDeviceDetection } from '@/hooks/useDeviceDetection';
+import { useSystem, terminalThemes } from '@/contexts/SystemContext';
 
 interface TerminalProps {
   isAiMode?: boolean;
@@ -23,6 +24,8 @@ export function Terminal({ isAiMode: propIsAiMode }: TerminalProps = {}) {
     cleanup
   } = useTerminal();
 
+  const { terminalTheme } = useSystem();
+  const theme = terminalThemes[terminalTheme];
   const device = useDeviceDetection();
   const [autoComplete, setAutoComplete] = useState<string[] | null>(null);
   
@@ -144,10 +147,10 @@ export function Terminal({ isAiMode: propIsAiMode }: TerminalProps = {}) {
   const getEntryColor = (type: string) => {
     switch (type) {
       case 'input': return 'text-white';
-      case 'system': return 'text-cyan-300';
+      case 'system': return theme.primary;
       case 'ai': return 'text-green-400';
       case 'error': return 'text-red-400';
-      default: return 'text-cyan-400';
+      default: return theme.primary;
     }
   };
 
@@ -163,7 +166,7 @@ export function Terminal({ isAiMode: propIsAiMode }: TerminalProps = {}) {
   const getGlowStyle = (type: string) => {
     switch (type) {
       case 'system':
-        return { textShadow: '0 0 10px #67e8f9' };
+        return { textShadow: `0 0 10px ${theme.glow}` };
       case 'ai':
         return { textShadow: '0 0 10px #4ade80' };
       case 'error':
@@ -171,12 +174,12 @@ export function Terminal({ isAiMode: propIsAiMode }: TerminalProps = {}) {
       case 'input':
         return { textShadow: '0 0 5px #ffffff' };
       default:
-        return { textShadow: '0 0 8px #22d3ee' };
+        return { textShadow: `0 0 8px ${theme.glow}` };
     }
   };
 
   return (
-    <div className={`h-full flex flex-col text-cyan-400 font-mono relative ${
+    <div className={`h-full flex flex-col ${theme.primary} font-mono relative ${
       device.isMobile ? 'text-xs' : device.isTablet ? 'text-sm' : 'text-sm'
     }`}>
       {/* Terminal Output */}
@@ -187,7 +190,7 @@ export function Terminal({ isAiMode: propIsAiMode }: TerminalProps = {}) {
         }`}
         style={{
           scrollbarWidth: 'thin',
-          scrollbarColor: `${isAiMode ? '#00ff41' : '#00bcd4'} transparent`,
+          scrollbarColor: `${isAiMode ? '#00ff41' : theme.glow} transparent`,
           background: `
             radial-gradient(
               ellipse at center,
@@ -205,8 +208,8 @@ export function Terminal({ isAiMode: propIsAiMode }: TerminalProps = {}) {
               0deg,
               transparent,
               transparent 2px,
-              ${isAiMode ? '#00ff4108' : '#00bcd408'} 2px,
-              ${isAiMode ? '#00ff4108' : '#00bcd408'} 4px
+              ${isAiMode ? '#00ff4108' : theme.bg} 2px,
+              ${isAiMode ? '#00ff4108' : theme.bg} 4px
             )`
           }}
         />
@@ -237,7 +240,7 @@ export function Terminal({ isAiMode: propIsAiMode }: TerminalProps = {}) {
         <motion.div
           className="border-t border-b bg-black/90 backdrop-blur-sm"
           style={{
-            borderColor: isAiMode ? '#4ade80' : '#22d3ee'
+            borderColor: isAiMode ? '#4ade80' : theme.glow
           }}
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
