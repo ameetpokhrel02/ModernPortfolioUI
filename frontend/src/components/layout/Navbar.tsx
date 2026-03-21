@@ -213,7 +213,7 @@ function ExpandedTabs({ tabs, className }: ExpandedTabsProps) {
 
 export function Navbar() {
   const { isSystemMode, toggleSystemMode, isSecuritySandboxActive, toggleSecuritySandbox } = useSystem()
-  const { theme, setTheme } = useTheme()
+  const { setTheme } = useTheme()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">

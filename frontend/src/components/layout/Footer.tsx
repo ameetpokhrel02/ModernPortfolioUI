@@ -1,11 +1,16 @@
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { motion } from 'framer-motion'
+import * as GuruIcons from '@amyths/guru-react-icons'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
-  const socialLinks = [
+  const socialLinks: Array<{
+    icon: any;
+    href: string;
+    label: string;
+  }> = [
     { icon: Github, href: 'https://github.com/ameetpokhrel02', label: 'GitHub' },
     { icon: Instagram, href: '', label: 'https://www.instagram.com/ameet_pokhrel/' },
     { icon: Linkedin, href: 'https://www.instagram.com/ameet_pokhrel/', label: 'LinkedIn' },
@@ -48,6 +53,29 @@ export function Footer() {
                 <social.icon className="h-5 w-5 text-black dark:text-white" />
               </motion.a>
             ))}
+            
+            {/* Guru Icon - Clean implementation */}
+            <motion.a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Guru"
+              whileHover={{ y: -4, scale: 1.15 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ delay: 4 * 0.06 }}
+              className="text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
+            >
+              <div className="w-5 h-5 flex items-center justify-center">
+                <GuruIcons.GuruSimple 
+                  size={20} 
+                  color="#f59e0b"
+                  style={{ display: 'block', width: '20px', height: '20px' }}
+                />
+              </div>
+            </motion.a>
           </div>
         </div>
 
