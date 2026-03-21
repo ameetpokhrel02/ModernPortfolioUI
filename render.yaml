@@ -12,29 +12,21 @@ services:
         value: "0"
       - key: ALLOWED_HOSTS
         value: ".onrender.com,localhost"
-      - key: DATABASE_URL
-        fromDatabase:
-          name: portfolio-db
-          property: connectionString
       - key: REDIS_URL
         fromService:
           type: redis
           name: portfolio-redis
           property: connectionString
     autoDeploy: true
+    disk:
+      name: sqlite-data
+      mountPath: /app/data      # matches your SQLite directory (backend/data/)
+      sizeGB: 1
 
-  # PostgreSQL database
-  - type: postgres
-    name: portfolio-db
-    plan: free
-    ipAllowList:
-      - source: 0.0.0.0/0
-        description: Allow all connections (internal backend will use this)
-
-  # Redis instance
+  # Redis instance (required for Channels)
   - type: redis
     name: portfolio-redis
     plan: free
     ipAllowList:
       - source: 0.0.0.0/0
-        description: Allow all connections (internal backend will use this)
+        description: Allow all connections (backend will use this internally)
