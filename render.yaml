@@ -3,8 +3,7 @@ services:
   - type: web
     name: portfolio-backend
     runtime: docker
-    rootDir: backend
-    dockerfilePath: backend/Dockerfile
+    dockerfilePath: backend/Dockerfile        # absolute path from repo root
     envVars:
       - key: DJANGO_SECRET_KEY
         generateValue: true
@@ -20,10 +19,10 @@ services:
     autoDeploy: true
     disk:
       name: sqlite-data
-      mountPath: /app/data      # matches your SQLite directory (backend/data/)
+      mountPath: /app/data
       sizeGB: 1
 
-  # Redis instance (required for Channels)
+  # Redis instance
   - type: redis
     name: portfolio-redis
     plan: free
